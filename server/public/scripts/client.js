@@ -57,7 +57,7 @@ function saveKoala(){
   const notes = document.querySelector('#notesIn').value;
   const koala = { name, age, favoriteColor, readyToTransfer, notes};
   // axios call to server to get koalas
-axios.post('/koalas', MediaKeySession)
+axios.post('/koalas', koala)
 .then ((respoonse) => {
   getKoalas();
 })

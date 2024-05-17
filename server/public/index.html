@@ -10,20 +10,20 @@
   <body>
     <header>
       <img src="images/icon.png" class="icon" />
-      <h1>Koala Holla</h1>
-      <h3>1976 Llama Comma Drive</h2>
-      <h3>Walla Walla, WA</h2>
+      <div class="header-text">
+        <h1>Koala Holla</h1>
+        <h3>1976 Llama Comma Drive</h2>
+        <h3>Walla Walla, WA</h2>
+      </div>
     </header>
     <section id="addKoala">
       <h2>Add Koala</h2>
-      <form class= "addNew" onSubmit="getKoalas()">
       <input type="text" id="nameIn" value="" placeholder="Name">
       <input type="text" id="ageIn" value="" placeholder="Age">
       <input type="text" id="colorIn" value="" placeholder="Favorite Color">
       <input type="text" id="readyForTransferIn" value="" placeholder="Transfer">
       <input type="text" id="notesIn" value="" placeholder="Notes">
-      <input type="submit"  value="Add Data">
-    </form>
+      <button type="button" id="addButton">Add Koala</button>
     </section>
     <section>
       <h2>All Koalas</h2>
