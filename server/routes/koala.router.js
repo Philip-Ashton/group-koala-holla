@@ -20,16 +20,18 @@ koalaRouter.get('/', function (request, response){
         })
         .catch((dbError) => {
             console.log('dbError:', dbError);
-            response.sendStatus(500)
+            response.sendStatus(500);
         })
 });
 
 // POST
 koalaRouter.post('/', function (request, response){
-    const newKoala = request.body;
-    newKoala.id = koalaList.length + 1;
-    koalaList.push(newKoala);
-    response.sendStatus(201);
+    console.log('request.body', request.body);
+    
+    let newKoala = request.body;
+    //newKoala.id = koalaList.length + 1;
+    //koalaList.push(newKoala);
+    //response.sendStatus(201);
 })
 
 // PUT
