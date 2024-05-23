@@ -1,19 +1,27 @@
 const express = require('express');
 const koalaRouter = express.Router();
 
+const pg = require('pg');
 // DB CONNECTION
-let koalaList = [
-    { id: 1, name: 'Scotty', favoriteColor: 'Red', age: 4, readyToTransfer: true, notes: 'Born in Guatemala'},
-    { id: 2, name: 'Jean', favoriteColor: 'Green', age: 5, readyToTransfer: true, notes: 'Allergic to lots of lava'},
-    { id: 3, name: 'Ororo', favoriteColor: 'Yellow', age: 7, readyToTransfer: false, notes: 'Loves listening to Paula (Abdul)'},
-    { id: 4, name: "K'Leaf", favoriteColor: 'Purple', age: 15, readyToTransfer: false, notes: 'Never refueses a treat.'},
-    { id: 5, name: 'Charlie', favoriteColor: 'Orange', age: 9, readyToTransfer: true, notes: 'Favorite band is Nirvana'},
-    { id: 6, name: 'Betsy', favoriteColor: 'Blue', age: 4, readyToTransfer: true, notes: 'Has a pet iguana'},
-]
+const pool = new pg.Pool({
+    database: 'koalas',
+    host: 'localhost',
+    port: 5432
+});
 
 // GET
 koalaRouter.get('/', function (request, response){
-    response.send(koalaList);
+    //response.send(koalaList);
+    const queryText = 'SELECT * FROM "koalas";';
+    pool.query(queryText)
+        .then((dbResult) => {
+            let koalas = dbResult.rows;
+            response.send(koalas)
+        })
+        .catch((dbError) => {
+            console.log('dbError:', dbError);
+            response.sendStatus(500)
+        })
 });
 
 // POST
