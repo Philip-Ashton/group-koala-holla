@@ -37,7 +37,7 @@ koalaRouter.post('/', function (request, response){
     let notes = newKoala.notes;
 
     let queryText = `INSERT INTO "koalas" ("name", "age", "favoriteColor", "readyToTransfer", "notes")
-    VALUE ($1, $2, $3, $4, $5);`
+    VALUES ($1, $2, $3, $4, $5);`
     //newKoala.id = koalaList.length + 1;
     //koalaList.push(newKoala);
     //response.sendStatus(201);
@@ -60,6 +60,20 @@ koalaRouter.post('/', function (request, response){
 // koalaRouter.put('/', function (request,response){
 //     .then(response =>)
 // })
+koalaRouter.put('/:id', function (request, response){
+    console.log ()
+    let idToUpdate = request.params.id;
+    let queryText = `UPDATE "koalas" WHERE id = $1, $2, $3, $4, $5;`;
+    pool.query(queryText, [idToUpdate])
+        .then(dbResult => {
+            console.log(dbResult);
+            response.sendStatus(200);
+        })
+        .catch(dbError => {
+            console.log(dbError);
+            response.sendStatus(500);
+        })
+});
 
 // DELETE
 koalaRouter.delete('/:id', function (request, response){
@@ -68,7 +82,7 @@ koalaRouter.delete('/:id', function (request, response){
     //response.sendStatus(201);
     console.log('req.params', request.params);
 
-    let idToDelete = request.params.id
+    let idToDelete = request.params.id;
 
     console.log('idToDelete', idToDelete);
     console.log('typeof idToDelete', typeof idToDelete);
