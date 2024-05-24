@@ -10,7 +10,7 @@ const pool = new pg.Pool({
 });
 
 // GET
-koalaRouter.get('/', function (request, response){
+koalaRouter.get('/', function (request, response) {
     //response.send(koalaList);
     const queryText = 'SELECT * FROM "koalas";';
     pool.query(queryText)
@@ -25,7 +25,7 @@ koalaRouter.get('/', function (request, response){
 });
 
 // POST
-koalaRouter.post('/', function (request, response){
+koalaRouter.post('/', function (request, response) {
     console.log('request.body', request.body);
 
     let newKoala = request.body;
@@ -52,7 +52,7 @@ koalaRouter.post('/', function (request, response){
             // send the client a response, based on the results.
             response.sendStatus(500);
 
-        console.log('Adding koalas', newKoala);
+            console.log('Adding koalas', newKoala);
         })
 });
 
@@ -60,8 +60,8 @@ koalaRouter.post('/', function (request, response){
 // koalaRouter.put('/', function (request,response){
 //     .then(response =>)
 // })
-koalaRouter.put('/:id', function (request, response){
-    console.log ()
+koalaRouter.put('/:id', function (request, response) {
+    console.log()
     let idToUpdate = request.params.id;
     let queryText = `UPDATE "koalas" WHERE id = $1, $2, $3, $4, $5;`;
     pool.query(queryText, [idToUpdate])
@@ -76,7 +76,7 @@ koalaRouter.put('/:id', function (request, response){
 });
 
 // DELETE
-koalaRouter.delete('/:id', function (request, response){
+koalaRouter.delete('/:id', function (request, response) {
     //const koalaId = Number(request.params.id);
     //koalaList = koalaList.filter(k => k.id !== koalaId);
     //response.sendStatus(201);
